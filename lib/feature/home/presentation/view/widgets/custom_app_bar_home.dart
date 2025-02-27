@@ -31,6 +31,7 @@ class CustomAppBarHome extends StatelessWidget {
               Text(
                 'Location',
                 style: TextStyle(
+                  fontFamily: 'Plus Jakarta Sans',
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                   color: AppColors.kOnPrimary,
@@ -39,6 +40,7 @@ class CustomAppBarHome extends StatelessWidget {
               Text(
                 'Condong Catur',
                 style: TextStyle(
+                  fontFamily: 'Plus Jakarta Sans',
                   color: AppColors.kOnPrimary,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,

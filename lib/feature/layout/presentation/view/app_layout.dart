@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:odc_ecommerce/core/widgets/service_locator.dart';
+import 'package:odc_ecommerce/feature/home/data/repo/home_repo_impl.dart';
+import 'package:odc_ecommerce/feature/home/logic/product_cubit/product_cubit.dart';
 import 'package:odc_ecommerce/feature/layout/logic/cubit/app_cubit.dart';
 
 class AppLayout extends StatelessWidget {
@@ -8,8 +11,21 @@ class AppLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppLayoutCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppLayoutCubit(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ProductCubit(getIt.get<HomeRepoImpl>())..getAllProduct(),
+        ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       CategoryCubit((getIt.get<HomeRepoImpl>())..getAllProduct(),
+        // ),
+        // ),
+      ],
       child: BlocBuilder<AppLayoutCubit, AppLayoutstate>(
         builder: (context, state) {
           var cubit = context.read<AppLayoutCubit>();

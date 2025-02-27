@@ -9,4 +9,5 @@ class AppColors {
   static const Color kTextTertiary = Color(0xffBCBDC0);
   static const Color kTextFormFeildColor = Color(0xffEAEAEA);
   static const Color kbuttonColor = Color(0xff2D3C52);
+  static const Color kBackgroundColor = Color(0xFFFBFBFB);
 }
