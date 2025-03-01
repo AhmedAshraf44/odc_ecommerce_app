@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:odc_ecommerce/core/widgets/service_locator.dart';
 import 'package:odc_ecommerce/feature/auth/presentation/view/login_view.dart';
+import 'package:odc_ecommerce/feature/home/data/repo/home_repo_impl.dart';
+import 'package:odc_ecommerce/feature/home/logic/product_cubit/product_cubit.dart';
 import 'package:odc_ecommerce/feature/layout/presentation/view/app_layout.dart';
 
 import 'core/network/dio_helper.dart';
@@ -23,15 +26,19 @@ class OdcEcommerce extends StatelessWidget {
         splitScreenMode: false,
         // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (_, child) {
-          return MaterialApp(
-            routes: {
-              '/login': (context) => LoginView(),
-            },
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              fontFamily: 'PlusJakartaSans',
+          return BlocProvider(
+            create: (context) =>
+                ProductCubit(getIt.get<HomeRepoImpl>())..getAllProduct(),
+            child: MaterialApp(
+              routes: {
+                '/login': (context) => LoginView(),
+              },
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                fontFamily: 'PlusJakartaSans',
+              ),
+              home: const AppLayout(),
             ),
-            home: const AppLayout(),
           );
         });
   }

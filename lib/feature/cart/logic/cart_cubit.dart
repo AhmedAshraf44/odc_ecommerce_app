@@ -9,6 +9,21 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
   double totalPrice = 0;
   List<ProductCartModel> products = [];
+  int quantity = 1;
+
+  void addToQuantity({required double price}) {
+    quantity++;
+    totalPrice += 1 * price;
+    emit(AddQuantityState());
+  }
+
+  void removeToQuantity({required double price}) {
+    if (quantity > 1) {
+      quantity--;
+      totalPrice -= 1 * price;
+      emit(RemoveQuantityState());
+    }
+  }
 
   Future<void> getCartData() async {
     emit(CartLoading());
@@ -41,5 +56,6 @@ class CartCubit extends Cubit<CartState> {
     for (int i = 0; i < products.length; i++) {
       totalPrice += products[i].quantity! * products[i].price!.toDouble();
     }
+    emit(TotalPriceUpdatedState());
   }
 }

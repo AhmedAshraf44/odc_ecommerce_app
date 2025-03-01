@@ -16,10 +16,10 @@ class AppLayout extends StatelessWidget {
         BlocProvider(
           create: (context) => AppLayoutCubit(),
         ),
-        BlocProvider(
-          create: (context) =>
-              ProductCubit(getIt.get<HomeRepoImpl>())..getAllProduct(),
-        ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       ProductCubit(getIt.get<HomeRepoImpl>())..getAllProduct(),
+        // ),
         // BlocProvider(
         //   create: (context) =>
         //       CategoryCubit((getIt.get<HomeRepoImpl>())..getAllProduct(),

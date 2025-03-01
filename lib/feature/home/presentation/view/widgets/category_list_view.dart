@@ -25,7 +25,7 @@ class CategoryListView extends StatelessWidget {
                   return Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-                    child: CustomCardItem(
+                    child: CustomItem(
                       item: context.read<ProductCubit>().item![index],
                     ),
                   );
